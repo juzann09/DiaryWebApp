@@ -1,0 +1,78 @@
+﻿@model IEnumerable<DiaryApp_MVC_.Models.Note>
+@{
+    //ViewData["Title"] = "Test Page";
+    //Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Заметки на неделю</title>
+</head>
+<body>
+    <h3>Заметки с @ViewBag.WeekStartDate по @ViewBag.WeekEndDate</h3>
+    <div>
+        @foreach (var note in Model.ToList().OrderBy(x => x.StartTime))
+        {
+            <div class="noteBlock">
+                <div style="display: flex">
+                    <div style="min-width: 100px">
+                        Тип:
+                    </div>
+                    <div>
+                        @note.Type
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="min-width: 100px">
+                        Тема:
+                    </div>
+                    <div>
+                        @note.Theme
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="min-width: 100px">
+                        Начало:
+                    </div>
+                    <div>
+                        @note.StartTime.ToShortDateString() @note.StartTime.ToShortTimeString()
+                    </div>
+                </div>
+                @if (note.Type == NoteType.Meeting)
+                {
+                    var meeting = note as Meeting;
+                    <div style="display: flex">
+                        <div style="min-width: 100px">
+                            Конец:
+                        </div>
+                        <div>
+                            @meeting.EndTime.ToShortDateString() @meeting.EndTime.ToShortTimeString()
+                        </div>
+                    </div>
+                    <div style="display: flex">
+                        <div style="min-width: 100px">
+                            Место:
+                        </div>
+                        <div>
+                            @meeting.Place
+                        </div>
+                    </div>
+                }
+                else if (note.Type == NoteType.ThingToDo)
+                {
+                    var thingToDo = note as ThingToDo;
+                    <div style="display: flex">
+                        <div style="min-width: 100px">
+                            Конец:
+                        </div>
+                        <div>
+                            @thingToDo.EndTime.ToShortDateString() @thingToDo.EndTime.ToShortTimeString()
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</body>
+</html>

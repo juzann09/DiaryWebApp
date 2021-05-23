@@ -1,0 +1,142 @@
+﻿@model IEnumerable<DiaryApp_MVC_.Models.Note>
+@{
+    ViewData["Title"] = "Список заметок";
+//Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Список заметок</title>
+    <style>
+        .note {
+            width: 50%;
+        }
+        fieldset{
+            display: grid;
+        }
+
+    </style>
+</head>
+<body>
+    <h3>Заметки</h3>
+    <div title="Добавить заметку" >
+        <form  class="form">
+            <label>Создать новую заметку</label>
+            <select size="1" name="noteType" class="roundInput" required>
+                <option disabled>Выберите тип записи</option>
+                <option selected value=@NoteType.Meeting>Встеча</option>
+                <option value=@NoteType.Memo>Напоминание</option>
+                <option value=@NoteType.ThingToDo>Дело</option>
+            </select>
+            <input type="submit" value="Создать" class="btn" formaction="~/Notes/CreateNote">
+        </form>
+    </div>
+    <div class="filterBar">
+        
+        <label>Тип заметки</label>
+        <form>
+            <select size="1" name="noteType" class="roundInput">
+                <option disabled>Выберите тип записи</option>
+                <option selected value=@NoteType.Meeting>Встеча</option>
+                <option value=@NoteType.Memo>Напоминание</option>
+                <option value=@NoteType.ThingToDo>Дело</option>
+            </select>
+            <input type="hidden" name="filter" value="true" />
+            <input type="submit" value="Применить фильтр" class="btn" formaction="~/Notes/FilterNotesByType">
+        </form> 
+        <div class="btn cancel">
+            <a href="~/Notes/CancelFilter">
+                Сбросить фильтр
+            </a>
+        </div>
+    </div>
+    <div class="notesList">
+        @foreach (var note in Model.ToList().OrderBy(x => x.StartTime))
+        {
+        <div class="noteBlock @(note.Active ? "activeStatus" : "notActiveStatus")">
+            <a href="~/Notes/EditNote?noteID=@note.ID&noteType=@note.Type">
+                <div class="noteInfo">
+                    <div style="display: flex">
+                        <div style="min-width: 100px">
+                            Тип:
+                        </div>
+                        <div>
+                            @note.Type
+                        </div>
+                    </div>
+                    <div style="display: flex">
+                        <div style="min-width: 100px">
+                            Тема:
+                        </div>
+                        <div>
+                            @note.Theme
+                        </div>
+                    </div>
+                    <div style="display: flex">
+                        <div style="min-width: 100px">
+                            Начало:
+                        </div>
+                        <div>
+                            @note.StartTime.ToShortDateString() @note.StartTime.ToShortTimeString()
+                        </div>
+                    </div>
+                    @if (note.Type == NoteType.Meeting)
+                    {
+                        var meeting = note as Meeting;
+                        <div style="display: flex">
+                            <div style="min-width: 100px">
+                                Конец:
+                            </div>
+                            <div>
+                                @meeting.EndTime.ToShortDateString() @meeting.EndTime.ToShortTimeString()
+                            </div>
+                        </div>
+                        <div style="display: flex">
+                            <div style="min-width: 100px">
+                                Место:
+                            </div>
+                            <div>
+                                @meeting.Place
+                            </div>
+                        </div>
+                    }
+                    else if (note.Type == NoteType.ThingToDo)
+                    {
+                        var thingToDo = note as ThingToDo;
+                        <div style="display: flex">
+                            <div style="min-width: 100px">
+                                Конец:
+                            </div>
+                            <div>
+                                @thingToDo.EndTime.ToShortDateString() @thingToDo.EndTime.ToShortTimeString()
+                            </div>
+                        </div>
+                    }
+                </div>
+            </a>
+            <div>
+                <div class="btn">
+                    <a href="~/Notes/DeleteNote?noteID=@note.ID&noteType=@note.Type">
+                        Удалить
+                    </a>
+                </div>
+                <div class="btn">
+                    <a href="~/Notes/EditNote?noteID=@note.ID&noteType=@note.Type">
+                        Редактировать
+                    </a>
+                </div>
+            </div>
+            @if (note.Active)
+            {
+                <div class="btn">
+                    <a href="~/Notes/DeactivateNote?noteID=@note.ID&noteType=@note.Type">
+                        Отметить как выполненное
+                    </a>
+                </div>
+            }
+        </div>
+        }
+    </div>
+</body>
+</html>

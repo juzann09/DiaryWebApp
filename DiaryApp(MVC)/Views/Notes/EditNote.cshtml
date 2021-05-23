@@ -1,0 +1,68 @@
+﻿@model Note
+@{
+    //ViewData["Title"] = "Test Page";
+    //Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Редактировать заметку</title>
+    <style>
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h3>Редактировать заметку</h3>
+    <div title="Редактировать заметку" class="editNoteForm">
+        <form class="form">
+            <fieldset>
+                <div>
+                    <div>
+                        <label>Начало</label>
+                        <input type="datetime-local" name="StartTime" class="roundInput" value=@ViewBag.StartDateTimeStr>
+                    </div>
+                    <div>
+                        <label>Тема</label>
+                        <input type="text" name="Theme" class="roundInput" value="@Model.Theme">
+                    </div>
+                </div>
+                @if (Model.Type == NoteType.Meeting)
+                {
+                    <div>
+                        @{var meeting = (Meeting)Model;
+                            string place = meeting.Place;
+                        }
+                        <div>
+                            <label>Место</label>
+                            <input type="text" name="Place" class="roundInput" value=@place>
+                        </div>
+                        <div>
+                            <label>Конец</label>
+                            <input type="datetime-local" name="EndTime" class="roundInput" value=@ViewBag.EndDateTimeStr>
+                        </div>
+                    </div>
+                }
+                @if (Model.Type == NoteType.ThingToDo)
+                {
+                    <div>
+                        <label>Конец</label>
+                        <input type="datetime-local" name="EndTime" class="roundInput" value=@ViewBag.EndDateTimeStr>
+                    </div>
+                }
+                <input type="hidden" name="active" value=@Model.Active.ToString() />
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <input type="hidden" name="type" value="@Model.Type" />
+                @if (Model.Type == NoteType.Meeting)
+                {<input type="submit" value="Сохранить изменения" class="btn" formaction="~/Notes/UpdateMeeting">}
+                @if (Model.Type == NoteType.Memo)
+                {<input type="submit" value="Сохранить изменения" class="btn" formaction="~/Notes/UpdateMemo">}
+                @if (Model.Type == NoteType.ThingToDo)
+                {<input type="submit" value="Сохранить изменения" class="btn" formaction="~/Notes/UpdateThingToDo">}
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.container {
+    max-width: 100%;
+}
+.navbar .container {
+    justify-content: center;
+}
+.filterBar {
+    display: flex;
+    align-items: center;
+}
+.form {
+    border-color: lightgreen;
+    min-width: max-content;
+    max-width: min-content;
+    margin: 20px 0px;
+    border-width: 2px;
+    border-radius: 20px;
+    padding: 5px 15px;
+    border-style: solid;
+    display: grid;
+    justify-items: center;
+}
+.roundInput {
+    border-radius: 20px;
+    text-align-last: center;
+}
+.form .btn {
+    padding: 0px 10px;
+    background-color: lightgreen;
+}
+.notesList {
+    display: flex;
+    flex-flow: wrap;
+}
+.noteBlock {
+    max-width: 400px;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+    border-width: 2px;
+    padding: 5px 15px;
+    display: grid;
+    justify-items: center;
+}
+.noteBlock .btn {
+    padding: 0px 10px;
+    background-color: white;
+}
+.noteInfo {
+    margin: 20px 0px 20px 0px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.activeStatus{
+    background-color: lightgreen;
+}
+.notActiveStatus {
+    
+    background-color: lightcoral;
+}
+.btn {
+    border-radius: 20px;
+    background-color: lightgreen;
+    width: max-content;
+    padding: 5px 10px 5px 10px;
+    margin: 10px;
+}
+.cancel{
+    background-color: salmon;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
