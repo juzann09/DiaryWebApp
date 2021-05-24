@@ -1,15 +1,14 @@
-using DiaryApp_MVC_.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Data.Entity;
 
 namespace DiaryApp_MVC_.Models
 {
+    // класс Встреча
     public class Meeting : Note
     {
         public DateTime EndTime { get; set; }
         public string Place { get; set; }
-        public Meeting (Note parentNote)
+        public Meeting() { }
+        public Meeting(Note parentNote)
         {
             ID = parentNote.ID;
             Type = parentNote.Type;
@@ -20,7 +19,13 @@ namespace DiaryApp_MVC_.Models
             EndTime = new DateTime();
             Place = "";
         }
-        public Meeting() { }
+        public Meeting(string type, string theme, DateTime startTime, 
+            DateTime endTime, string place) 
+            : base(type, theme, startTime) 
+        {
+            EndTime = endTime;
+            Place = place;
+        }
         public void Update(Meeting meeting)
         {
             base.Update(meeting);

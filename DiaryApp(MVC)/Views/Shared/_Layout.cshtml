@@ -11,10 +11,15 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
+                <div class="btn">
+                    <a href="~/Notes/CancelFilters">
+                        В начало
+                    </a>
+                </div>
                 <form method="post" class="form">
                     <label>Посмотреть заметки на день</label>
                     <input type="date" name="chosenDay" class="roundInput" />
-                    <input type="hidden" name="dateFilter" value="true"/>
+                    <input type="hidden" name="dateFilter" value="true" />
                     <input type="submit" value="Выбрать" class="btn" formaction="~/Notes/FilterNotesByDay" />
                 </form>
                 <form method="post" class="form">
