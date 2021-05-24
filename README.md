@@ -10,6 +10,7 @@
 
 База данных создается в файле "SampleData.cs". База данных состоит из 3-х таблиц: "Meetings" (Встречи), "ThingsToDo" (Дела) и "Memos" (Памятки). Для подключения к БД используется строка по умолчанию, прописанная в файле "appsettings.json" ("DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=DiaryAppDB;Trusted_Connection=True;MultipleActiveResultSets=true")
 
+Тип проекта: Веб-приложение ASP.NET Core (модель-представление-контроллер), целевая платформа - .NET 5.0
 Используемые технологии:
 - Microsoft.AspNetCore.App (v.5.0.0)
 - Microsoft.EntityFrameworkCore.SqlServer (v5.0.6.)
